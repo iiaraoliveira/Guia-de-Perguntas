@@ -29,6 +29,7 @@ public class Topico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
+    private String descricao;
     private LocalDateTime dataPostagem;
 
     @ManyToOne(fetch = FetchType.LAZY)
