@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "usuario")
@@ -32,10 +33,10 @@ public class Usuario {
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Resposta respostas;
+    private List<Resposta> respostas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Topico topicos;
+    private List<Topico> topicos;
 
     @OneToMany(mappedBy = "usuario")
     private Set<CurtidasTopicos> curtidasTopicos;
