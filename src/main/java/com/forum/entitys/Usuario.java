@@ -31,6 +31,8 @@ public class Usuario {
     @Column(unique = true)
     private String login;
     private String senha;
+    private Long qtdResposta;
+    private Long qtdCurtidas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas;
