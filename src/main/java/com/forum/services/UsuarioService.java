@@ -98,7 +98,7 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        List<Resposta> respostas = respostaRepository.procurarPeloIdDousuario(usuario_id);
+        List<Resposta> respostas = respostaRepository.procurarPeloIdDousuario(usuario.getId());
 
         return respostas.stream()
                 .mapToLong(resposta -> curtidasRespostasRepository.contarRespostaPorId(resposta.getId()))
@@ -109,7 +109,7 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        List<Topico> topicos = topicoRepository.procurarPeloIdDousuario(usuario_id);
+        List<Topico> topicos = topicoRepository.procurarPeloIdDousuario(usuario.getId());
 
         return topicos.stream()
                 .mapToLong(topico -> curtidasTopicosRepository.contarTopicoPorId(topico.getId()))
