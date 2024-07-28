@@ -31,5 +31,5 @@ public class CurtidasRespostas {
 
     @ManyToOne
     @JoinColumn(name = "resposta_id", nullable = false)
-    private Resposta respostas;
+    private Resposta resposta;
 }

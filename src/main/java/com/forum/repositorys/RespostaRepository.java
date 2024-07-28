@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface RespostaRepository extends JpaRepository<Resposta, String>{
 
-    long contarPorIdDoUsuario(Long usuario_id);
+    long countByUsuarioId(Long usuario_id);
 
-    List<Resposta> procurarPeloIdDousuario(Long usuario_id);
+    List<Resposta> findByUsuarioId(Long usuario_id);
 }

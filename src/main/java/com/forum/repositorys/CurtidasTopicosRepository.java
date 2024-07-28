@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface CurtidasTopicosRepository extends JpaRepository<CurtidasTopicos, String>{
 
-    boolean existeusuarioETopico(Usuario usuario, Topico topico);
+    boolean existsByUsuarioIdAndTopicoId(Usuario usuario, Topico topico);
 
-    Optional<CurtidasTopicos> procurarUsuarioETopico(Usuario usuario, Topico topico);
+    Optional<CurtidasTopicos> findByUsuarioAndTopico(Usuario usuario, Topico topico);
 
-    long contarTopicoPorId(long topico_id);
+    long countByTopicoId(long topico_id);
 }

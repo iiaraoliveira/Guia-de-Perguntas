@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface CurtidasRespostasRepository extends JpaRepository<CurtidasRespostas, String>{
 
-    boolean existeusuarioEResposta(Usuario usuario, Resposta resposta);
+    boolean existsByUsuarioAndResposta(Usuario usuario, Resposta resposta);
 
-    Optional<CurtidasRespostas> procurarUsuarioEResposta(Usuario usuario, Resposta resposta);
+    Optional<CurtidasRespostas> findByUsuarioAndResposta(Usuario usuario, Resposta resposta);
 
-    long contarRespostaPorId(long resposta_id);
+    long countByRespostaId(long resposta_id);
 }

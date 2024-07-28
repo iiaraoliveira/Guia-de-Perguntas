@@ -30,7 +30,7 @@ public class CurtidasTopicosService {
         Topico topico = topicoRepository.findById(String.valueOf(topico_id))
                 .orElseThrow(() -> new RuntimeException("Tópico não encontrado"));
 
-        boolean jaCurtiu = curtidasTopicosRepository.existeusuarioETopico(usuario, topico);
+        boolean jaCurtiu = curtidasTopicosRepository.existsByUsuarioIdAndTopicoId(usuario, topico);
 
         if(jaCurtiu){
             throw new RuntimeException("Usuário já deu like no tópico!");
@@ -38,7 +38,7 @@ public class CurtidasTopicosService {
 
         CurtidasTopicos curtidasTopicos = new CurtidasTopicos();
         curtidasTopicos.setUsuario(usuario);
-        curtidasTopicos.setTopicos(topico);
+        curtidasTopicos.setTopico(topico);
 
         curtidasTopicosRepository.save(curtidasTopicos);
     }
@@ -50,7 +50,7 @@ public class CurtidasTopicosService {
         Topico topico = topicoRepository.findById(String.valueOf(topico_id))
                 .orElseThrow(() -> new RuntimeException("Tópico não encontrado"));
 
-        CurtidasTopicos curtidasTopicos = curtidasTopicosRepository.procurarUsuarioETopico(usuario, topico)
+        CurtidasTopicos curtidasTopicos = curtidasTopicosRepository.findByUsuarioAndTopico(usuario, topico)
                 .orElseThrow(() -> new RuntimeException("Curtida não encontrada"));
 
         curtidasTopicosRepository.delete(curtidasTopicos);

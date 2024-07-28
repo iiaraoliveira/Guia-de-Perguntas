@@ -98,10 +98,10 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        List<Resposta> respostas = respostaRepository.procurarPeloIdDousuario(usuario.getId());
+        List<Resposta> respostas = respostaRepository.findByUsuarioId(usuario.getId());
 
         return respostas.stream()
-                .mapToLong(resposta -> curtidasRespostasRepository.contarRespostaPorId(resposta.getId()))
+                .mapToLong(resposta -> curtidasRespostasRepository.countByRespostaId(resposta.getId()))
                 .sum();
     }
 
@@ -109,10 +109,10 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        List<Topico> topicos = topicoRepository.procurarPeloIdDousuario(usuario.getId());
+        List<Topico> topicos = topicoRepository.findByUsuarioId(usuario.getId());
 
         return topicos.stream()
-                .mapToLong(topico -> curtidasTopicosRepository.contarTopicoPorId(topico.getId()))
+                .mapToLong(topico -> curtidasTopicosRepository.countByTopicoId(topico.getId()))
                 .sum();
     }
 
@@ -124,14 +124,14 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        return respostaRepository.contarPorIdDoUsuario(usuario.getId());
+        return respostaRepository.countByUsuarioId(usuario.getId());
     }
 
     public long contabilizarTopicoPorUsuario(Long usuario_id){
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        return topicoRepository.contarPorIdDoUsuario(usuario.getId());
+        return topicoRepository.countByUsuarioId(usuario.getId());
     }
 
     public Selo determinarSeloCurtida(Long usuario_id){

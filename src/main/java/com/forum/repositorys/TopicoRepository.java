@@ -11,7 +11,7 @@ public interface TopicoRepository extends JpaRepository<Topico, String>{
 
     List<Topico> findByTitulo(String titulo);
 
-    long contarPorIdDoUsuario(Long usuario_id);
+    long countByUsuarioId(Long usuario_id);
 
-    List<Topico>  procurarPeloIdDousuario(Long usuario_id);
+    List<Topico>  findByUsuarioId(Long usuario_id);
 }

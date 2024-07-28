@@ -31,7 +31,7 @@ public class CurtidasRespostasService {
         Resposta resposta = respostaRepository.findById(String.valueOf(resposta_id))
                 .orElseThrow(() -> new RuntimeException("Resposta não encontrada"));
 
-        boolean jaCurtiu = curtidasRespostasRepository.existeusuarioEResposta(usuario, resposta);
+        boolean jaCurtiu = curtidasRespostasRepository.existsByUsuarioAndResposta(usuario, resposta);
 
         if(jaCurtiu){
             throw new RuntimeException("Usuário já deu like na resposta!");
@@ -39,7 +39,7 @@ public class CurtidasRespostasService {
 
         CurtidasRespostas curtidasRespostas = new CurtidasRespostas();
         curtidasRespostas.setUsuario(usuario);
-        curtidasRespostas.setRespostas(resposta);
+        curtidasRespostas.setResposta(resposta);
 
         curtidasRespostasRepository.save(curtidasRespostas);
     }
@@ -51,7 +51,7 @@ public class CurtidasRespostasService {
         Resposta resposta = respostaRepository.findById(String.valueOf(resposta_id))
                 .orElseThrow(() -> new RuntimeException("Resposta não encontrada"));
 
-        CurtidasRespostas curtidasRespostas = curtidasRespostasRepository.procurarUsuarioEResposta(usuario, resposta)
+        CurtidasRespostas curtidasRespostas = curtidasRespostasRepository.findByUsuarioAndResposta(usuario, resposta)
                 .orElseThrow(() -> new RuntimeException("Curtida não encontrada"));
 
         curtidasRespostasRepository.delete(curtidasRespostas);
