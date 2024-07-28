@@ -1,5 +1,6 @@
 package com.forum.services;
 
+import com.forum.dtos.UsuarioDTO;
 import com.forum.dtos.UsuarioQtdCurtidasDTO;
 import com.forum.dtos.UsuarioQtdRespostaDTO;
 import com.forum.entitys.Resposta;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -46,6 +48,52 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+    public void criarUsuario(UsuarioDTO dto){
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByLogin(dto.login());
+
+        if(usuarioOptional.isPresent()){
+            throw new RuntimeException("Login já existe");
+        }
+
+        Usuario usuario = new Usuario();
+        usuario.setNome(dto.nome());
+        usuario.setLogin(dto.login());
+        usuario.setSenha(dto.senha());
+
+        usuarioRepository.save(usuario);
+    }
+
+    public void atualizarUsuario(Long id, UsuarioDTO dto){
+        Usuario usuario = usuarioRepository.findById(String.valueOf(id))
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuario.setNome(dto.nome());
+        usuario.setLogin(dto.login());
+        usuario.setSenha(dto.senha());
+
+        usuarioRepository.save(usuario);
+    }
+
+    public void apagarUsuario(Long id){
+        if(!usuarioRepository.existsById(String.valueOf(id))){
+            throw new RuntimeException("Usuário não encontrado pelo id: " + id);
+        }
+
+        Usuario usuario = procurarUsuario(id);
+
+        usuarioRepository.delete(usuario);
+    }
+
+    private Usuario procurarUsuario(Long id){
+        if(id < 1){
+            throw new IllegalArgumentException("O id deve ser maior que zero");
+        }
+
+        return usuarioRepository.findById(String.valueOf(id))
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado pelo id" + id));
+
+    }
+
     public long contarCurtidasRespostas(Long usuario_id){
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
@@ -72,7 +120,7 @@ public class UsuarioService {
         return contarCurtidasRespostas(usuario_id) + contarCurtidasTopicos(usuario_id);
     }
 
-    public long contabilizarRespostarPorUsuario(Long usuario_id){
+    public long contabilizarRespostaPorUsuario(Long usuario_id){
         Usuario usuario = usuarioRepository.findById(String.valueOf(usuario_id))
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
@@ -101,7 +149,7 @@ public class UsuarioService {
     }
 
     public Selo determinarSeloResposta(Long usuario_id){
-        long totalDeSelos = contabilizarRespostarPorUsuario(usuario_id);
+        long totalDeSelos = contabilizarRespostaPorUsuario(usuario_id);
 
         if(totalDeSelos >= LIMITE_RESPOSTA_BRONZE && totalDeSelos <= LIMITE_RESPOSTA_PRATA){
             return Selo.BRONZE;
@@ -123,8 +171,8 @@ public class UsuarioService {
                         usuario.getQtdResposta()
                 ))
                 .sorted((u1, u2) -> Long.compare(
-                        contabilizarRespostarPorUsuario(u2.qtdResposta()),
-                        contabilizarRespostarPorUsuario(u1.qtdResposta())))
+                        contabilizarRespostaPorUsuario(u2.qtdResposta()),
+                        contabilizarRespostaPorUsuario(u1.qtdResposta())))
                 .toList();
     }
 

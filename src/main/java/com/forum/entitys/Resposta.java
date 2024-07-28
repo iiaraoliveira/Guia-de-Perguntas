@@ -35,6 +35,10 @@ public class Resposta {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "topico_id")
+    private Topico topico;
+
     @OneToMany(mappedBy = "resposta")
     private Set<CurtidasRespostas> curtidasRespostas;
 }

@@ -109,12 +109,18 @@ public class TopicoService {
         }
 
         return topicos.stream()
-                .map(this::paraDTO)
+                .map(topico -> new ListaTopicosDTO(topico.getTitulo(),
+                        topico.getDescricao(), topico.getDataPostagem()))
                 .toList();
     }
 
-    private ListaTopicosDTO paraDTO(Topico topico){
-        return new ListaTopicosDTO(topico.getTitulo(), topico.getDescricao(), topico.getDataPostagem());
+    public List<ListaTopicosDTO> listarTodosTopicos(){
+        List<Topico> topicos = topicoRepository.findAll();
+
+        return topicos.stream()
+                .map(topico -> new ListaTopicosDTO(topico.getTitulo(),
+                        topico.getDescricao(), topico.getDataPostagem()))
+                .toList();
     }
 
 }
