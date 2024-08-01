@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg'
 
 const usuario = [
@@ -10,6 +10,7 @@ const usuario = [
 const Header = ({id}) => {
 
      const [User, setUser] = useState('');
+     const [idUSer, setIdUser] = useState('');
      const navigate = useNavigate();
 
      useEffect(()=>{
@@ -17,8 +18,9 @@ const Header = ({id}) => {
         const foundUser = usuario.find(u => u.id == parseInt(id));
         if(foundUser){
             setUser(foundUser.nome);
+            setIdUser(foundUser.id);
         }
-     })
+     });
     
 
     /* Opções exibidas ao clicar no meu perfil */
@@ -45,14 +47,14 @@ const Header = ({id}) => {
 
                 <div className="header-itens">
                     <div className='logo'>
-                        <a className="icone-logo" href='/'>
+                        <Link className="icone-logo" to="/">
                             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="30" height="30" rx="6" fill="#F7F7F7"/>
                                 <path d="M9.55866 18.0086C9.39479 18.0086 9.26071 17.9626 9.15642 17.8705C9.05214 17.7784 9 17.66 9 17.5154V4.49326C9 4.34857 9.05214 4.23019 9.15642 4.13811C9.26071 4.04604 9.39479 4 9.55866 4H12.419C12.5829 4 12.7169 4.04604 12.8212 4.13811C12.9255 4.23019 12.9777 4.34857 12.9777 4.49326V8.89315C13.3799 8.48539 13.8715 8.16312 14.4525 7.92636C15.0484 7.67644 15.7337 7.55148 16.5084 7.55148C17.3724 7.55148 18.1397 7.72248 18.8101 8.06447C19.4953 8.40647 20.0317 8.91288 20.419 9.58372C20.8063 10.2414 21 11.0503 21 12.0106V17.5154C21 17.66 20.9479 17.7784 20.8436 17.8705C20.7393 17.9626 20.6052 18.0086 20.4413 18.0086H17.5587C17.4097 18.0086 17.2756 17.9626 17.1564 17.8705C17.0521 17.7784 17 17.66 17 17.5154V12.1289C17 11.5107 16.8287 11.0372 16.486 10.7084C16.1583 10.3664 15.6667 10.1954 15.0112 10.1954C14.4004 10.1954 13.9088 10.3664 13.5363 10.7084C13.1639 11.0372 12.9777 11.5107 12.9777 12.1289V17.5154C12.9777 17.66 12.9255 17.7784 12.8212 17.8705C12.7169 17.9626 12.5829 18.0086 12.419 18.0086H9.55866Z" fill="#1E252B"/>
                                 <path d="M23 20.5102C20.6988 22.7292 18.5 24 15 24C11.7138 24 9.08988 22.5253 7 20.5102" stroke="#1E252B" stroke-width="3" stroke-linecap="round"/>
                             </svg>
 
-                        </a>
+                        </Link>
                         <p id='titulo-logo'>HiperForúm</p>
                     </div>
                     
@@ -72,7 +74,7 @@ const Header = ({id}) => {
 
                 <div className='header-itens'>
                     
-                    <a className='icone icone-home' href='/'>
+                    <Link className='icone icone-home' to="/">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="40" height="40" rx="7" fill="#FF4401"/>
                                 <g clip-path="url(#clip0_3897_50)">
@@ -84,7 +86,7 @@ const Header = ({id}) => {
                                 </clipPath>
                                 </defs>
                             </svg>
-                        </a>
+                        </Link>
                     
                     <div className='section-user'>
                    
@@ -99,11 +101,10 @@ const Header = ({id}) => {
                                 {mostrarMeuPerfil && (<div className="mostrarMeuPerfil">
                                                
                                                 <ul>
-                                                    <a><li>Meu perfil</li></a>
+                                                    <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
                                                     <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
                                                     <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
-                                                    <a><li>Cadastro</li></a>
-                                                    <a><li>Sair</li></a>                                                  
+                                                    <Link to="/login"><li>Sair</li></Link>                                                  
                                                 </ul>
                                              </div>)
                                 }

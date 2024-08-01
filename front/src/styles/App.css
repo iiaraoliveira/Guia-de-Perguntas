@@ -85,13 +85,10 @@ button {
   justify-content: center;
 }
 
-
 /*section user (header)*/
 .username{
   color: white;
 }
-
-
 
 .dropdraw{
   display: flex;
@@ -104,20 +101,22 @@ button {
 
 .mostrarMeuPerfil{
   position: absolute;
-  background-color: #E5E7EB;
+  background-color: #2C353D;
   width: 200px;
-  margin-top: 200px;
+  margin-top: 230px;
   margin-right: 0;
+  border-radius: 16px;
+  color: #ffffff;
 }
 
 .mostrarMeuPerfil li{
   padding-top: 5px;
   padding-bottom: 5px;
-  border-top: 1px solid black;
+  border-top: 1px solid rgb(87, 87, 87);
 }
 
 .mostrarMeuPerfil li:hover{
-  background-color: #c9c9c9;
+  background-color: #FF6934;
 }
 
 .icone-usuario{
@@ -154,7 +153,8 @@ button {
 }
 
 .public-post button{
-  padding: 20px 30px;
+  padding: 30px 20px;
+  text-align: center;
   background-color: #FF6934;
   border-radius: 8px;
 }
@@ -207,4 +207,235 @@ input[type=text]{
 .align-left{
   display: flex;
   justify-content: flex-end;
+}
+
+/* Responsividade */
+
+/* Dispositivos pequenos (smartphones em modo retrato) */
+@media only screen and (max-width: 468px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .header-itens {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #titulo-logo {
+    font-size: 22px;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    font-size: 14px;
+  }
+ 
+  .public-post {
+    width: 100%;
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+  .public-post input[type=text] {
+    width: 100%;
+  }
+
+  .public-post button {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dropdraw {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mostrarMeuPerfil {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+  }
+
+  .button-voltar {
+    padding: 15px 30px;
+    margin: 15px;
+  }
+}
+
+/* Dispositivos médios (tablets em modo retrato) */
+@media only screen and (max-width: 768px) {
+
+  .header-content {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-itens {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  #titulo-logo {
+    font-size: 36px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .public-post {
+    width: 90%;
+    padding: 15px;
+    height: 250px; 
+  }
+
+  .public-post input[type=text] {
+    width: 100%;
+  }
+
+  .public-post button {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dropdraw {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mostrarMeuPerfil {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+  }
+
+  .button-voltar {
+    padding: 15px 30px;
+    margin: 15px;
+  }
+}
+
+/* Responsividade */
+
+/* Dispositivos pequenos (smartphones em modo retrato) */
+@media only screen and (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .header-itens {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #titulo-logo {
+    font-size: 22px;
+  }
+
+  form {
+    margin: 10px;
+  }
+
+  input[type="text"] {
+    width: 90%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .dropdraw {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mostrarMeuPerfil {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+  }
+}
+
+/* Dispositivos médios (tablets em modo retrato) */
+@media only screen and (max-width: 768px) {
+  .header-content {
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .header-itens {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  #titulo-logo {
+    font-size: 24px;
+  }
+
+  input[type="text"] {
+    width: 80%;
+  }
+
+  .dropdraw {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .mostrarMeuPerfil {
+    width: 80%;
+  }
+}
+
+/* Dispositivos grandes (laptops e desktops) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .header-content {
+    justify-content: space-between;
+    padding: 15px 40px;
+  }
+
+  .header-itens {
+    gap: 20px;
+  }
+
+  input[type="text"] {
+    width: 400px;
+  }
+
+  .dropdraw {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .mostrarMeuPerfil {
+    width: 200px;
+  }
 }

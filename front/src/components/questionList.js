@@ -84,7 +84,7 @@ const QuestionList = () => {
                     onChange={(e) => setNewQuestionDescription(e.target.value)}/>
                 </div>
                 <div>
-                    <button onClick={createNewTopic}>Criar Post</button>
+                    <button className="button" onClick={createNewTopic}>Criar Pergunta</button>
                 </div>  
                 
             </div>

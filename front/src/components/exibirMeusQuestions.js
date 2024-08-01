@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg'
 
 /* Todos comentários*/
@@ -50,6 +50,7 @@ const ExibirMeusQuestions = () => {
                
             ))}
         </div>
+        <Link to='/'><button className='button-voltar'>Voltar</button></Link>
     </div>
    )
   

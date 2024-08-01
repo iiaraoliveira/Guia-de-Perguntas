@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import QuestionComents from "./questionComents";
-import ReactDOM from "react-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import imagemUser from '../images/icone-usuario.svg'
 
 const usuario = [
@@ -126,7 +125,7 @@ const QuestionCommentsList = () => {
                         onChange={(e) => setNewComment(e.target.value)}/>
                 <button onClick={AddComment}>Enviar</button>
             </div>
-            <a href='/'><button className='button-voltar'>Voltar</button></a>
+            <Link to='/'><button className='button-voltar'>Voltar</button></Link>
 
         </div>
     )

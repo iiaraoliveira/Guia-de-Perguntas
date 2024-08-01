@@ -98,3 +98,32 @@
 .click{
     cursor: pointer;
 }
+
+
+/* RESPONSIVIDADE*/
+
+/* RESPONSIVIDADE */
+
+/* Dispositivos médios (tablets em modo retrato) */
+@media only screen and (max-width: 768px) {
+
+    .question-item {
+        width: 100%;
+        height: 200px;
+        margin: 10px auto;
+        padding: 20px;
+        
+        border-radius: 16px;
+    }
+
+    .question-item-detail {
+        width: 100%;
+        height: 200px;
+    }
+    
+}    
+  /* Dispositivos grandes (laptops e desktops) */
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+   
+  }
+  

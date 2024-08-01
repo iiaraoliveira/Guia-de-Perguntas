@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { parsePath, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg'
 
 /* Todos comentários*/
@@ -56,6 +56,7 @@ const ExibirMeusComments = () => {
                </div>
             ))}
         </div>
+        <Link to='/'><button className='button-voltar'>Voltar</button></Link>
     </div>
    )
   
