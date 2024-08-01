@@ -12,7 +12,7 @@ body *{
 .main-cadastro{
     width: 100vw;
     height: 100vh;
-    background: #201b2c;
+    background: #262D34;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@ body *{
 
 .left-cadastro > h1{
     font-size: 3vw;
-    color: #77ffc0;
+    color: #FF6934;
 }
 
 .left-cadastro-image{
@@ -51,18 +51,18 @@ body *{
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: #2f2841;
+    background:#262D34;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #00000056;
 }
 
 .card-cadastro > h1{
-    color: #00ff88;
+    color: #FF6934;
     font-weight: 800;
     margin: 0;
 }
 
-.textfield{
+.textfieldCadastro{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -71,12 +71,12 @@ body *{
     margin: 10px 0px;
 }
 
-.textfield > input{
+.textfieldCadastro > input{
     width: 100%;
     border: none;
     border-radius: 10px;
     padding: 15px;
-    background: #514869;
+    background: #2C353D;
     color: #f0ffffde;
     font-size: 12pt;
     box-shadow: 0px 10px 40px #00000056;
@@ -84,12 +84,12 @@ body *{
     box-sizing: border-box;
 }
 
-.textfield > label{
+.textfieldCadastro > label{
     color: #f0ffffde;
     margin-bottom: 10px;
 }
 
-.textfield > input::placeholder{
+.textfieldCadastro > input::placeholder{
     color: #f0ffff94;
 }
 
@@ -103,8 +103,8 @@ body *{
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 3px;
-    color: #2b134b;
-    background: #00ff88;
+    color: #ffffff;
+    background:#FF6934;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #00ff8052;
 }
