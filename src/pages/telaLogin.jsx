@@ -6,14 +6,13 @@ const TelaLogin = () => {
         <div className="main-login">
             <div className="left-login">
                 <h1>Faça um login<br/>E entre para nosso time</h1>
-                <img src="hand-coding-animate.svg" className="left-login-image" alt="Codando"/>
             </div>
             <div className="right-login">
                 <div className="card-login">
                     <h1>LOGIN</h1>
                     <div className="textfield">
-                        <label for="usuario">Usuário</label>
-                        <input type="text" name="usuario" placeholder="Usuário"/>
+                        <label for="usuario">Email</label>
+                        <input type="text" name="email" placeholder="Email" />
                     </div>
                     <div className="textfield">
                         <label for="password">Senha</label>
