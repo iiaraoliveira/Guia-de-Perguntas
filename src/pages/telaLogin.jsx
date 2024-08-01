@@ -1,7 +1,16 @@
 import React from "react";
 import '../styles/login.css'
+import { useNavigate } from 'react-router-dom';
+
 
 const TelaLogin = () => { 
+
+    const navigate = useNavigate();
+
+    const handleClickLogar = () => {
+        navigate(`/`);
+    };
+
     return (
         <div className="main-login">
             <div className="left-login">
@@ -18,7 +27,7 @@ const TelaLogin = () => {
                         <label for="password">Senha</label>
                         <input type="password" name="senha" placeholder="Senha"/>   
                     </div>
-                    <button className="btn-login">Login</button>
+                    <button className="btn-login" onClick={handleClickLogar}>Login</button>
                 </div>
             </div>
         </div>

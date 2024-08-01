@@ -1,8 +1,17 @@
 import React from "react";
 import '../styles/cadastro.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const TelaCadastro = () => { 
+
+    
+    const navigate = useNavigate();
+
+    const handleClickCadastrar = () => {
+        navigate(`/`);
+    };
+
     return (
         <div className="main-cadastro">
             <div className="left-cadastro">
@@ -23,7 +32,7 @@ const TelaCadastro = () => {
                         <label for="password">Senha</label>
                         <input type="password" name="senha" placeholder="Senha"/>   
                     </div>
-                    <button className="btn-cadastro">cadastro</button>
+                    <button className="btn-cadastro" onClick={handleClickCadastrar}>cadastro</button>
                 </div>
             </div>
         </div>
