@@ -1,11 +1,13 @@
 package com.forum.services;
 
+import com.forum.dtos.CriarUsuarioDTO;
 import com.forum.dtos.UsuarioDTO;
 import com.forum.dtos.UsuarioQtdCurtidasDTO;
 import com.forum.dtos.UsuarioQtdRespostaDTO;
 import com.forum.entitys.Resposta;
 import com.forum.entitys.Topico;
 import com.forum.entitys.Usuario;
+import com.forum.enums.Role;
 import com.forum.enums.Selo;
 import com.forum.repositorys.CurtidasRespostasRepository;
 import com.forum.repositorys.CurtidasTopicosRepository;
@@ -48,17 +50,18 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void criarUsuario(UsuarioDTO dto){
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByLogin(dto.login());
+    public void criarUsuario(CriarUsuarioDTO dto){
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByNome(dto.nome());
 
         if(usuarioOptional.isPresent()){
-            throw new RuntimeException("Login já existe");
+            throw new RuntimeException("Nome já existe");
         }
 
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
         usuario.setLogin(dto.login());
         usuario.setSenha(dto.senha());
+        usuario.setRole(Role.USUARIO);
 
         usuarioRepository.save(usuario);
     }

@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("resposta")
+@RequestMapping
 public class RespostaController {
 
     @Autowired
     private RespostaService service;
 
-    @PostMapping("/{usuario_id}/{topico_id}")
+    @PostMapping("/usuario/resposta/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> criarResposta(@PathVariable Long usuario_id,
                                               @PathVariable Long topico_id,
                                               @RequestBody List<RespostaDTO> dto){
@@ -34,7 +34,7 @@ public class RespostaController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{usuario_id}/{topico_id}")
+    @PutMapping("/usuario/resposta/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> atualizarResposta(@PathVariable Long usuario_id,
                                               @PathVariable Long topico_id,
                                               @RequestBody RespostaDTO dto){
@@ -44,7 +44,7 @@ public class RespostaController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{usuario_id}/{topico_id}")
+    @DeleteMapping("/usuario/resposta/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> apagarResposta(@PathVariable Long usuario_id,
                                               @PathVariable Long topico_id){
 
@@ -53,7 +53,7 @@ public class RespostaController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/{topico_id}")
+    @GetMapping("/publico/resposta/{topico_id}")
     public ResponseEntity<List<ListaRespostasDTO>> listarRespostas(@PathVariable Long topico_id){
         return new ResponseEntity<>(service.listarRespostas(topico_id),
                 service.listarRespostas(topico_id) != null ?

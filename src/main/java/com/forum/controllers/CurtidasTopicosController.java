@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("curtidas-topicos")
+@RequestMapping
 public class CurtidasTopicosController {
 
     @Autowired
     private CurtidasTopicosService service;
 
-    @PostMapping("/{usuario_id}/{topico_id}")
+    @PostMapping("/usuario/curtidas-topicos/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> darCurtida(@PathVariable Long usuario_id,
                                            @PathVariable Long topico_id){
 
@@ -26,7 +26,7 @@ public class CurtidasTopicosController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{usuario_id}/{topico_id}")
+    @DeleteMapping("/usuario/curtidas-topicos/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> removerCurtida(@PathVariable Long usuario_id,
                                            @PathVariable Long topico_id){
 

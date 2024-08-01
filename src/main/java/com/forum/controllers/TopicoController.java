@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("topico")
+@RequestMapping
 public class TopicoController {
 
     @Autowired
     private TopicoService service;
 
-    @PostMapping("/usuario_id")
+    @PostMapping("/usuario/topico/usuario_id")
     public ResponseEntity<Void> criarTopico(@PathVariable Long usuario_id,
                                             @RequestBody List<TopicoDTO> dto){
 
@@ -33,7 +33,7 @@ public class TopicoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/usuario_id/topico_id")
+    @PutMapping("/usuario/topico/usuario_id/topico_id")
     public ResponseEntity<Void> atualizarTopico(@PathVariable Long usuario_id,
                                                 @PathVariable Long topico_id,
                                                 @RequestBody TopicoDTO dto){
@@ -43,7 +43,7 @@ public class TopicoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/usuario_id/topico_id")
+    @DeleteMapping("/usuario/topico/usuario_id/topico_id")
     public ResponseEntity<Void> apagarTopico(@PathVariable Long usuario_id,
                                              @PathVariable Long topico_id){
 
@@ -52,14 +52,14 @@ public class TopicoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/publico/topico")
     public ResponseEntity<List<ListaTopicosDTO>> listarTodosTopicos(){
         return new ResponseEntity<>(service.listarTodosTopicos(),
                 service.listarTodosTopicos() != null ?
                 HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/{titulo}")
+    @GetMapping("/publico/topico/{titulo}")
     public ResponseEntity<List<ListaTopicosDTO>> buscarPorTitulo(@PathVariable String titulo){
         return new ResponseEntity<>(service.buscarPorTitulo(titulo),
                 service.buscarPorTitulo(titulo) != null ?
