@@ -7,6 +7,9 @@ import QuestionList from './components/questionList';
 import ExibirMeusQuestions from './components/exibirMeusQuestions';
 import ExibirMeusComments from './components/exibirMeusComentarios';
 import QuestionCommentsList from './components/questionComentsList';
+import TelaLogin from './pages/telaLogin';
+import TelaCadastro from './pages/telaCadastro';
+
 
 const usuario = [
   {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -27,6 +30,9 @@ function App() {
                   <Route path="/comments/:idTopic" element={<QuestionCommentsList />} />
                   <Route path="/myquestions/:id" element={<ExibirMeusQuestions />} />
                   <Route path="/mycomments/:id" element={<ExibirMeusComments />} />
+                  <Route path="/tela-login" element={<TelaLogin/>} />
+                  <Route path="/tela-cadastro" element={<TelaCadastro/>} />
+
               </Routes>
            
             </main>
