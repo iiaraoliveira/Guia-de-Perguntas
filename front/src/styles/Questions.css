@@ -15,6 +15,14 @@
     border-radius: 16px;
 }
 
+.dark .question-item,
+.dark .question-item-detail,
+.dark .public-comment,
+.dark .comment {
+    background-color: #FFFFFF;
+    color: #333333;
+}
+
 .question-item-detail {
     width: 785px;
     height: 200px;
@@ -25,12 +33,10 @@
     border-radius: 16px;
 }
 
-
 .answers{
     padding-left: 20px;
 
 }
-
 
 .coments{
     width: 642px;
@@ -43,6 +49,11 @@
     border-radius: 16px;
 }
 
+.dark .coments {
+    background-color: #F0F0F0;
+  color: #333333;
+  }
+  
 .public-comment, .comment{
     width: 730px;
     height: 144px;
@@ -67,6 +78,10 @@
     border-radius: 8px;
 }
 
+  .dark .public-comment input[type=text] {
+    border: 1px solid #CCCCCC;
+  }
+
 /*usuario*/
 .titulo-question{
     color: #F7F7F7;
@@ -77,6 +92,7 @@
 .anwers-text{
     font-weight: 400;
 }
+
 .username{
     font-size: 14px;
     color: #F4F6F8;
@@ -93,10 +109,30 @@
     color: #C5D0E6;
 }
 
+.dark .titulo-question,
+.dark .anwers-text,
+.dark .username {
+  color: #333333;
+}
+
+.dark .data,
+.dark .likes,
+.dark .comentarios {
+  color: #666666;
+}
+
 /*icone de like*/
 
 .click{
     cursor: pointer;
+}
+
+body.dark .svg-light-dark {
+    fill: #2C353D; /* Cor no modo claro */
+}
+
+body .svg-light-dark {
+    fill: #FFFFFF; /* Cor no modo escuro */
 }
 
 

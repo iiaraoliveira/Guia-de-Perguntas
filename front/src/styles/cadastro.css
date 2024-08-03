@@ -18,6 +18,10 @@ body *{
     align-items: center;
 }
 
+.dark .main-cadastro{
+    background: #F7F7F7;
+}
+
 .left-cadastro{
     width: 50vw;
     height: 100vh;
@@ -56,6 +60,10 @@ body *{
     box-shadow: 0px 10px 40px #00000056;
 }
 
+.dark .card-cadastro{
+    background: #FFFFFF; /* Fundo do cartão claro */
+}
+
 .card-cadastro > h1{
     color: #FF6934;
     font-weight: 800;
@@ -84,13 +92,27 @@ body *{
     box-sizing: border-box;
 }
 
+.dark .textfieldCadastro >input{
+    background: #F1F1F1;
+    color: #333333; 
+}
+
 .textfieldCadastro > label{
     color: #f0ffffde;
     margin-bottom: 10px;
 }
 
+.dark .textfieldCadastro > label {
+    color: #333333; /* Texto escuro */
+    margin-bottom: 10px;
+}
+
 .textfieldCadastro > input::placeholder{
     color: #f0ffff94;
+}
+
+.dark .textfieldCadastro > input::placeholder {
+    color: #AAAAAA; /* Placeholder mais claro */
 }
 
 .btn-cadastro{
@@ -109,6 +131,12 @@ body *{
     box-shadow: 0px 10px 40px -12px #00ff8052;
 }
 
+.dark .btn-cadastro{
+    background: #FF4401;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #FF440152;
+}
+
 .btn-voltar{
     padding: 16px;
     margin: 25px;
@@ -118,7 +146,7 @@ body *{
     text-transform: uppercase;
     font-weight: 800;
     color: #ffffff;
-    background:#FF6934;
+    background:#FF4401;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #00ff8052;
 }

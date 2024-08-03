@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg'
+import { initializeDarkMode } from './darkLightMode.js';
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -13,15 +14,18 @@ const Header = ({id}) => {
      const [idUSer, setIdUser] = useState('');
      const navigate = useNavigate();
 
-     useEffect(()=>{
-         /* Identificar o usuario logado */
-        const foundUser = usuario.find(u => u.id == parseInt(id));
-        if(foundUser){
+    useEffect(() => {
+        /* Identificar o usuario logado */
+        const foundUser = usuario.find(u => u.id === parseInt(id));
+        if (foundUser) {
             setUser(foundUser.nome);
             setIdUser(foundUser.id);
         }
-     });
-    
+
+        // Chama a função de inicialização do modo escuro/claro
+        initializeDarkMode();
+
+    }, [id]);
 
     /* Opções exibidas ao clicar no meu perfil */
     const [mostrarMeuPerfil, setMostrarMeuPerfil] = useState(false);
@@ -71,6 +75,10 @@ const Header = ({id}) => {
                         </button>
                     </fieldset>
                 </form>
+
+                <div class="colormode" id="colormode">
+                    <div class="indicador"></div>
+                </div>
 
                 <div className='header-itens'>
                     

@@ -10,6 +10,7 @@ import QuestionCommentsList from './components/questionComentsList';
 import TelaLogin from './pages/TelaLogin';
 import TelaCadastro from './pages/TelaCadastro';
 import TelaPerfil from './pages/TelaPerfil';
+import './components/darkLightMode';
 
 const usuario = [
   {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},

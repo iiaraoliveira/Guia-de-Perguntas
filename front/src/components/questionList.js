@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import QuestionItem from "./questionItem";
 import imagemUser from '../images/icone-usuario.svg'
+import { initializeDarkMode } from './darkLightMode.js';
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -49,6 +50,8 @@ const QuestionList = () => {
          */
         SetTopics(topicos);
         SetLikesTopic(likeTopicos);
+            
+        initializeDarkMode();
     }, []);
 
     /* Criar novo Topico */
