@@ -21,7 +21,7 @@ const TelaCadastro = ({onLogin}) => {
             </div>
             <div className="right-cadastro">
                 <div className="card-cadastro">
-                    <h1>SING UP</h1>
+                    <h1>Cadastre-se</h1>
                     <div className="textfieldCadastro">
                         <label for="usuario">Usuário</label>
                         <input type="text" name="usuario" placeholder="Usuário"/>
@@ -34,7 +34,7 @@ const TelaCadastro = ({onLogin}) => {
                         <label for="password">Senha</label>
                         <input type="password" name="senha" placeholder="Senha"/>   
                     </div>
-                    <button className="btn-cadastro" onClick={handleClickCadastrar}>cadastro</button>
+                    <button className="btn-cadastro" onClick={handleClickCadastrar}>cadastrar</button>
                 </div>
             </div>
         </div>
