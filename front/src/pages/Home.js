@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import QuestionItem from "./questionItem";
+import QuestionItem from "../components/questionItem";
 import imagemUser from '../images/icone-usuario.svg'
-import { initializeDarkMode } from './darkLightMode.js';
+import { initializeDarkMode } from '../components/darkLightMode.js';
+import Modal from 'react-modal';
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -27,7 +28,12 @@ const likeRespostas = [
     {id: 1, idUser: 1, idResposta: 1},
 ]
 
-const QuestionList = () => {
+
+// Código necessário para os recursos de acessibilidade
+Modal.setAppElement('#root');
+
+
+const Home = () => {
     const [topics, SetTopics] = useState([]);
     const [likesTopic, SetLikesTopic] = useState([]);
     const [newQuestionTitle, setNewQuestionTitle] = useState('');
@@ -36,18 +42,7 @@ const QuestionList = () => {
     const idUsuario = 1;
 
     useEffect(() => {
-        /*
-        const fetchQuestion = async () => {
-            try{
-                const responde = await axios.get('api)}
-                setQuestion(responde.data)
-            } catch (error){
-                console.log("Error")}
-             }
-
-        fetchQuestion();
-
-         */
+        
         SetTopics(topicos);
         SetLikesTopic(likeTopicos);
             
@@ -102,6 +97,6 @@ const QuestionList = () => {
     )
 };
 
-export default QuestionList;
+export default Home;
 
 

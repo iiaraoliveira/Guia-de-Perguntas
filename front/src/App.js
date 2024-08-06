@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './styles/App.css';
 import './styles/Questions.css'
+import './styles/modal.css'
 import Header from './components/header';
-import QuestionList from './components/questionList';
+import Home from './pages/Home';
 import ExibirMeusQuestions from './components/exibirMeusQuestions';
 import ExibirMeusComments from './components/exibirMeusComentarios';
 import QuestionCommentsList from './components/questionComentsList';
@@ -39,7 +40,7 @@ function App() {
           <Route path="/login" element={<TelaLogin onLogin={handleLogin} />} />
           <Route path="/cadastro" element={<TelaCadastro />} />
 
-          <Route path="/" element={isAutenticado ? <><Header id={idLogado} /> <QuestionList /></> : <Navigate to="/login" />} />
+          <Route path="/" element={isAutenticado ? <><Header id={idLogado} /> <Home /></> : <Navigate to="/login" />} />
           <Route path="/comments/:idTopic" element={isAutenticado ? <><Header id={idLogado} /> <QuestionCommentsList /> </>: <Navigate to="/login" />} />
           <Route path="/myquestions/:id" element={isAutenticado ? <><Header id={idLogado} /> <ExibirMeusQuestions /></> : <Navigate to="/login" />} />
           <Route path="/mycomments/:id" element={isAutenticado ? <><Header id={idLogado} /> <ExibirMeusComments /></> : <Navigate to="/login" />} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import imagemUser from '../images/icone-usuario.svg';
+import Modal from 'react-modal';
 
 /* Todos os comentários */
 const respostas = [
@@ -53,13 +54,29 @@ const QuestionComents = ({ answer }) => {
         return user ? user.nome : 'Usuário desconhecido';
     };
 
-    const handleEdit = () => {
-      return true;
-    };
+    // Hook que demonstra se a modal está aberta ou não
+  const [modalIsOpenEdit, setIsOpenEdit] = React.useState(false);
+  const [modalIsOpenDelete, setIsOpenDelete] = React.useState(false);
 
-    const handleDelete = () =>{
-      return true;
-    }
+  // Função que abre a modal
+  function openModal() {
+    setIsOpenEdit(true);
+  }
+
+  // Função que fecha a modal
+  function closeModal() {
+    setIsOpenEdit(false);
+  }
+
+  // Função que abre a modal
+  function openModalDelete() {
+    setIsOpenDelete(true);
+  }
+
+  // Função que fecha a modal
+  function closeModalDelete() {
+    setIsOpenDelete(false)
+  }
 
     return (
         <div className="question-detail">
@@ -82,10 +99,44 @@ const QuestionComents = ({ answer }) => {
                                   <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.64458 1.16667H11.5261V2.33333H0V1.16667H2.88153L3.84633 0H7.67981L8.64458 1.16667ZM2.68944 14C1.8441 14 1.15261 13.3017 1.15261 12.4479V3.5H10.3735V12.4479C10.3735 13.3017 9.682 14 8.8367 14H2.68944Z" fill="white"/>
                                   </svg>
-                                  <a onClick={handleDelete} className='click'>Delete</a>
+                                  <a onClick={openModalDelete} className='click'>Delete</a>
+                                  <Modal
+                                        className="modal-edit"
+                                        isOpen={modalIsOpenDelete}
+                                        onRequestClose={closeModalDelete}
+                                        contentLabel='modal de deletar topico'
+                                        style={{overlay: {
+                                            backgroundColor: 'rgba(0, 0 ,0, 0.8)'},}}>
+                                            <div className='align-center'>
+                                                <h2>Certeza que deseja deletar esse comentário?</h2>
+                                                <button type='submit'>Confirmar</button>
+                                            </div>
+                                </Modal>
+
                                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0813 0.474468L13.4788 2.87199C14.1491 3.51055 14.1765 4.57097 13.5401 5.24327L5.66499 13.1184C5.37977 13.4012 5.00593 13.5773 4.60623 13.6171L0.957442 13.9496H0.878691C0.646111 13.951 0.422565 13.8596 0.257434 13.6959C0.0728398 13.5119 -0.0201832 13.2553 0.00368177 12.9959L0.379936 9.34706C0.419753 8.94736 0.595858 8.57352 0.878691 8.2883L8.75377 0.413217C9.43263 -0.160306 10.4336 -0.133966 11.0813 0.474468ZM8.15877 3.4495L10.5038 5.79452L12.2538 4.08826L9.86504 1.69948L8.15877 3.4495Z" fill="white"/>
-                                  </svg><a onClick={handleEdit} className='click'>Edit</a>
+                                  </svg>
+                                  <a onClick={openModal} className='click'>Edit</a>
+                                  <Modal
+                                    className="modal-edit"
+                                    isOpen={modalIsOpenEdit}
+                                    onRequestClose={closeModal}
+                                    contentLabel='modal de editar topico'
+                                    style={{overlay: {
+                                      backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                                    },}}>
+                                    <form className='form-edit'>
+                                       <h1>Edite sua Pergunta</h1>
+                                        <fieldset>
+                                            <label>Pergunta</label>
+                                            <input
+                                              type='text' 
+                                              placeholder={answer.resposta}>
+                                            </input>
+                                        </fieldset>
+                                        <button onClick="EditTopic" type='submit'>Confirmar</button>
+                                    </form>           
+                                </Modal>
                               </div>)
                               : 
                               ''
