@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import QuestionComents from "./questionComents";
+import QuestionComents from "../components/questionComents";
 import { useParams, Link } from "react-router-dom";
 import imagemUser from '../images/icone-usuario.svg'
+import { useNavigate } from "react-router-dom";
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -28,7 +29,8 @@ const likeRespostas = [
     {id: 1, idUser: 1, idResposta: 1},
 ]
 
-const QuestionCommentsList = () => {
+const TelaComentarios = () => {
+    const navigate = useNavigate();
 
     const { idTopic } = useParams();
 
@@ -40,7 +42,7 @@ const QuestionCommentsList = () => {
     
    
 
-    const idUserLogged = 1;
+    const idUserLogged = 0;
 
     useEffect(() => {
 
@@ -92,6 +94,12 @@ const QuestionCommentsList = () => {
             return user? user.nome: 'Usuário desconhecido';
           }
 
+         /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+            const directLogin = () => {
+                alert('Necessário autenticação');
+                navigate(`/login`);
+            };
+
     return (
         <div>
 
@@ -123,7 +131,7 @@ const QuestionCommentsList = () => {
                         value={newComment}
                         className='input-text'
                         onChange={(e) => setNewComment(e.target.value)}/>
-                <button onClick={AddComment}>Enviar</button>
+                <button onClick={idUserLogged ==true ?AddComment : directLogin}>Enviar</button>
             </div>
             <Link to='/'><button className='button-voltar'>Voltar</button></Link>
 
@@ -131,6 +139,6 @@ const QuestionCommentsList = () => {
     )
 };
 
-export default QuestionCommentsList;
+export default TelaComentarios;
 
 

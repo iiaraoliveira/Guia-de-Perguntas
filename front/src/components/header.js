@@ -2,17 +2,24 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg'
 import { initializeDarkMode } from './darkLightMode.js';
+import Modal from 'react-modal';
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
     {id: 2, nome: 'Iara Costa', email: 'iara@gmail.com', senha: '1234'},
 ]
 
+// Código necessário para os recursos de acessibilidade
+Modal.setAppElement('#root');
+
 const Header = ({id}) => {
 
      const [User, setUser] = useState('');
      const [idUSer, setIdUser] = useState('');
      const navigate = useNavigate();
+
+    /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
+    const idUserLogged = 0;
 
     useEffect(() => {
         /* Identificar o usuario logado */
@@ -26,14 +33,7 @@ const Header = ({id}) => {
         initializeDarkMode();
 
     }, [id]);
-
-    /* Opções exibidas ao clicar no meu perfil */
-    const [mostrarMeuPerfil, setMostrarMeuPerfil] = useState(false);
     
-    const handleClick = () =>{
-        setMostrarMeuPerfil(buttonState => !buttonState);
-    } 
-
     /* exibir meus tópicos */
     const handleClickExibirMeusTopicos = () => {
         navigate(`/myquestions/${id}`);
@@ -43,7 +43,26 @@ const Header = ({id}) => {
     const handleClickExibirMeusComments = () => {
         navigate(`/mycomments/${id}`);
       };
-    
+
+      
+    // Hook que demonstra se a modal está aberta ou não
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+     // Função que abre a modal
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    // Função que fecha a modal
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+       /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+    const directLogin = () => {
+        alert('Necessário autenticação');
+        navigate(`/login`);
+    };
 
     return(
         <header> 
@@ -59,7 +78,7 @@ const Header = ({id}) => {
                             </svg>
 
                         </Link>
-                        <p id='titulo-logo'>HiperForúm</p>
+                        <p id='titulo-logo'>AnswerHub</p>
                     </div>
                     
                 </div>
@@ -97,26 +116,44 @@ const Header = ({id}) => {
                         </Link>
                     
                     <div className='section-user'>
-                   
+                        {
+                            idUserLogged == true
+                            ?
+                            <div>
+                                <button className='dropdraw' onClick={openModal}>
+                                    
+                                    <img className='icone-usuario' src={imagemUser}></img>
+                                    <span className="username">{User}</span>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 6H6C5.17595 6 4.70557 6.94076 5.2 7.6L9.2 12.9333C9.6 13.4667 10.4 13.4667 10.8 12.9333L14.8 7.6C15.2944 6.94076 14.824 6 14 6Z" fill="#F4F6F8"/>
+                                    </svg>
+                                </button>
+                                <Modal className="modalMeuPerfil"
+                                isOpen={modalIsOpen}
+                                onRequestClose={closeModal}
+                                contentLabel='modal de deletar topico'
+                                style={{overlay: {
+                                    backgroundColor: 'rgba(0, 0 ,0, 0.8)'},}}>
+                                                <div>
+                                                    <ul>
+                                                        <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
+                                                        <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
+                                                        <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
+                                                        <Link to="/login"><li>Sair</li></Link>                                                  
+                                                    </ul>
+                                                </div>
+                            </Modal>
+                        </div>
+                        :
+                        <div>
+                            <button className='button-cadastro' onClick={directLogin}>        
+                                        <span>Se cadastre</span>                                                   
+                            </button>                           
+                        </div>
+
+                        }
                             
-                            <button className='dropdraw' onClick={handleClick}>
-                                
-                                <img className='icone-usuario' src={imagemUser}></img>
-                                <span className="username">{User}</span>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 6H6C5.17595 6 4.70557 6.94076 5.2 7.6L9.2 12.9333C9.6 13.4667 10.4 13.4667 10.8 12.9333L14.8 7.6C15.2944 6.94076 14.824 6 14 6Z" fill="#F4F6F8"/>
-                                </svg>
-                                {mostrarMeuPerfil && (<div className="mostrarMeuPerfil">
-                                               
-                                                <ul>
-                                                    <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
-                                                    <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
-                                                    <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
-                                                    <Link to="/login"><li>Sair</li></Link>                                                  
-                                                </ul>
-                                             </div>)
-                                }
-                            </button>
+                            
                             
                     </div>
 

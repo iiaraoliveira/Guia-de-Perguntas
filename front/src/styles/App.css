@@ -122,43 +122,7 @@ button {
   border-radius: 6px;
 }
 
-.mostrarMeuPerfil{
-  position: absolute;
-  background-color: #2C353D;
-  width: 200px;
-  margin-top: 230px;
-  margin-right: 0;
-  border-radius: 16px;
-  color: #ffffff;
-}
 
-.dark .mostrarMeuPerfil{
-  background-color: #FFFFFF;
-  color: #333333;
-}
-
-.mostrarMeuPerfil li{
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-top: 1px solid rgb(87, 87, 87);
-}
-
-.dark .mostrarMeuPerfil li {
-  border-top: 1px solid #DDDDDD; /* Cinza muito claro */
-}
-
-.mostrarMeuPerfil li:hover{
-  background-color: #FF6934;
-}
-
-.icone-usuario{
-  max-width: none;
-  width: 40px;
-  height: 40px;
-  background-color: #c9c9c9;
-  border-radius: 50%;
-  border: 2px solid  #c9c9c9;
-}
 
 /* Botão modo claro e escuro */
 .colormode{
@@ -247,6 +211,14 @@ input[type=text]{
   color: white;
 }
 
+.button-cadastro{
+  padding: 20px 20px;
+  background-color: #FF6934;
+  border-radius: 8px;
+  color: white;
+}
+
+
 /*divs row*/
 
 .row{
@@ -284,6 +256,12 @@ input[type=text]{
   justify-content: flex-end;
 }
 
+.align-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* Responsividade */
 
 /* Dispositivos pequenos (smartphones em modo retrato) */

@@ -1,0 +1,79 @@
+.modal-edit{
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #1E252B;
+    border-radius: 16px;
+    color: white;
+}
+
+.form-edit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-edit input[type="text"]{
+    background-color: white;
+    color: rgb(83, 83, 83);
+    border-radius: 8px;;
+}
+
+.form-edit label{
+    font-weight: 200;
+}
+
+.form-edit fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.modal-edit button{
+    border-radius: 8px;
+    background-color: #FF6934;;
+    margin: 10px;
+}
+
+
+/* modal de opções do usuário*/
+
+.modalMeuPerfil{
+    background-color: #2C353D;
+    max-width: 200px;
+    position: absolute;
+    top: 80px;
+    right: 40px;
+    border-radius: 16px;
+    color: #ffffff;
+  }
+  
+  .dark .mostrarMeuPerfil{
+    background-color: #FFFFFF;
+    color: #333333;
+  }
+  
+  .modalMeuPerfil li{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .dark .modalMeuPerfil li {
+    border-top: 1px solid #DDDDDD; /* Cinza muito claro */
+  }
+  
+  .modalMeuPerfil li:hover{
+    background-color: #FF6934;
+    border-radius: 8px;
+  }
+  
+  .icone-usuario{
+    max-width: none;
+    width: 40px;
+    height: 40px;
+    background-color: #c9c9c9;
+    border-radius: 50%;
+    border: 2px solid  #c9c9c9;
+  }

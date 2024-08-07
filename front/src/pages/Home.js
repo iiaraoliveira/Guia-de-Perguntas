@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
-import QuestionItem from "./questionItem";
+import QuestionItem from "../components/questionItem";
 import imagemUser from '../images/icone-usuario.svg'
-import { initializeDarkMode } from './darkLightMode.js';
+import { initializeDarkMode } from '../components/darkLightMode.js';
+import Modal from 'react-modal';
+import { useNavigate } from "react-router-dom";
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -27,27 +29,23 @@ const likeRespostas = [
     {id: 1, idUser: 1, idResposta: 1},
 ]
 
-const QuestionList = () => {
+
+// Código necessário para os recursos de acessibilidade
+Modal.setAppElement('#root');
+
+
+const Home = () => {
+    const navigate = useNavigate();
+
     const [topics, SetTopics] = useState([]);
     const [likesTopic, SetLikesTopic] = useState([]);
     const [newQuestionTitle, setNewQuestionTitle] = useState('');
     const [newQuestionDescription, setNewQuestionDescription] = useState('')
 
-    const idUsuario = 1;
+    const idUserLogged = 0;
 
     useEffect(() => {
-        /*
-        const fetchQuestion = async () => {
-            try{
-                const responde = await axios.get('api)}
-                setQuestion(responde.data)
-            } catch (error){
-                console.log("Error")}
-             }
-
-        fetchQuestion();
-
-         */
+        
         SetTopics(topicos);
         SetLikesTopic(likeTopicos);
             
@@ -59,7 +57,7 @@ const QuestionList = () => {
         if(newQuestionTitle){
             const newQuestionFormat = {
                 id: topics.length + 1,
-                idUser: idUsuario,
+                idUser: idUserLogged,
                 title: newQuestionTitle,
                 description: newQuestionDescription,
                 data: 'today'
@@ -69,6 +67,12 @@ const QuestionList = () => {
             setNewQuestionDescription('');
         }     
     }
+
+       /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+    const directLogin = () => {
+        alert('Necessário autenticação');
+        navigate(`/login`);
+    };
 
     return (
         <div>
@@ -87,7 +91,7 @@ const QuestionList = () => {
                     onChange={(e) => setNewQuestionDescription(e.target.value)}/>
                 </div>
                 <div>
-                    <button className="button" onClick={createNewTopic}>Criar Pergunta</button>
+                    <button className="button" onClick={idUserLogged == true? createNewTopic : directLogin}>Criar Pergunta</button>
                 </div>  
                 
             </div>
@@ -102,6 +106,6 @@ const QuestionList = () => {
     )
 };
 
-export default QuestionList;
+export default Home;
 
 
