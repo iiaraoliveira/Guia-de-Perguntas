@@ -32,17 +32,19 @@ public class SecurityConfigurations implements WebMvcConfigurer {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/usuario/**").hasRole("USUARIO")
                         .requestMatchers(HttpMethod.GET, "/publico/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuario/**").hasRole("USUARIO")
                         .requestMatchers(HttpMethod.POST, "/publico/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/usuario/**").hasRole("USUARIO")
                         .requestMatchers(HttpMethod.DELETE, "/usuario/**").hasAnyRole("ADMIN", "USUARIO")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                /*.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)*/
                 .build();
     }
 
+    @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
         .allowedOrigins("*")

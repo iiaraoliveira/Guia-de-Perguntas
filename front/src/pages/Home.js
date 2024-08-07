@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
 import QuestionItem from "../components/questionItem";
 import imagemUser from '../images/icone-usuario.svg'
 import { initializeDarkMode } from '../components/darkLightMode.js';
@@ -37,38 +38,62 @@ Modal.setAppElement('#root');
 const Home = () => {
     const navigate = useNavigate();
 
-    const [topics, SetTopics] = useState([]);
+    const [topics, setTopics] = useState([]);
     const [likesTopic, SetLikesTopic] = useState([]);
     const [newQuestionTitle, setNewQuestionTitle] = useState('');
     const [newQuestionDescription, setNewQuestionDescription] = useState('')
 
-    const idUserLogged = 0;
+    const idUserLogged = 1;
 
     useEffect(() => {
-        
-        SetTopics(topicos);
-        SetLikesTopic(likeTopicos);
-            
+        const fetchTopics = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/publico/topico');
+                setTopics(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar tópicos", error);
+            }
+        };
+
+        fetchTopics();
         initializeDarkMode();
     }, []);
 
     /* Criar novo Topico */
-    const createNewTopic = () =>{
+    const createNewTopic = async () =>{
         if(newQuestionTitle){
-            const newQuestionFormat = {
-                id: topics.length + 1,
-                idUser: idUserLogged,
-                title: newQuestionTitle,
-                description: newQuestionDescription,
-                data: 'today'
-            };
-            SetTopics([...topics, newQuestionFormat]);
-            setNewQuestionTitle('');
-            setNewQuestionDescription('');
+            // const newQuestionFormat = {
+            //     id: topics.length + 1,
+            //     idUser: idUserLogged,
+            //     title: newQuestionTitle,
+            //     description: newQuestionDescription,
+            //     data: 'today'
+            // };
+            // setTopics([...topics, newQuestionFormat]);
+            // setNewQuestionTitle('');
+            // setNewQuestionDescription('');
+            try {
+                const newQuestionFormat = {
+                    idUser: idUserLogged,
+                    title: newQuestionTitle,
+                    description: newQuestionDescription,
+                    data: 'today'
+                };
+
+                // Envia a solicitação para criar um novo tópico
+                await axios.post(`http://localhost:8080/usuario/topico/17`, newQuestionFormat);
+                
+                // Atualize a lista de tópicos
+                setTopics([...topics, newQuestionFormat]);
+
+                setNewQuestionTitle('');
+                setNewQuestionDescription('');
+            } catch (error) {
+                console.error("Erro ao criar novo tópico", error);
+            }
         }     
     }
 
-       /* Direciona para uma pagina contendo só os comentários de cada pergunta */
     const directLogin = () => {
         alert('Necessário autenticação');
         navigate(`/login`);
@@ -91,7 +116,7 @@ const Home = () => {
                     onChange={(e) => setNewQuestionDescription(e.target.value)}/>
                 </div>
                 <div>
-                    <button className="button" onClick={idUserLogged == true? createNewTopic : directLogin}>Criar Pergunta</button>
+                    <button className="button" onClick={idUserLogged ? createNewTopic : directLogin}>Criar Pergunta</button>
                 </div>  
                 
             </div>

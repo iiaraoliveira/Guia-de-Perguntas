@@ -30,7 +30,7 @@ const QuestionItem = ({ topico }) => {
   const navigate = useNavigate();
 
   /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
-  const idUserLogged = 0;
+  const idUserLogged = 1;
 
   /* Contador da quantidade de likes */
   const [contLikesTopic, setContLikesTopic] = useState(likeTopicos);
@@ -230,7 +230,7 @@ const QuestionItem = ({ topico }) => {
                 </div>
                 <div>
                     <p className='username'>{user}</p>
-                    <p className='data'>{topico.data}</p>
+                    <p className='data'>{topico.dataPostagem}</p>
                 </div>
             </div>
            

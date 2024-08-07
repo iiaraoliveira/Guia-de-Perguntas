@@ -24,7 +24,7 @@ public class TopicoController {
     @Autowired
     private TopicoService service;
 
-    @PostMapping("/usuario/topico/usuario_id")
+    @PostMapping("/usuario/topico/{usuario_id}")
     public ResponseEntity<Void> criarTopico(@PathVariable Long usuario_id,
                                             @RequestBody List<TopicoDTO> dto){
 
