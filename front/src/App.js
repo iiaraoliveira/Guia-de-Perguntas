@@ -7,7 +7,7 @@ import Header from './components/header';
 import Home from './pages/Home';
 import ExibirMeusQuestions from './components/exibirMeusQuestions';
 import ExibirMeusComments from './components/exibirMeusComentarios';
-import QuestionCommentsList from './components/questionComentsList';
+import TelaComentarios from './pages/TelaComentarios';
 import TelaLogin from './pages/TelaLogin';
 import TelaCadastro from './pages/TelaCadastro';
 import TelaPerfil from './pages/TelaPerfil';
@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>
     <div className="App">
-    <Header id={idLogado} />
+    
 
       <main>
         {
@@ -42,11 +42,11 @@ function App() {
         <Routes>
             <Route path="/login" element={<TelaLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<TelaCadastro />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/comments/:idTopic" element={<QuestionCommentsList />} />
-            <Route path="/myquestions/:id" element={<ExibirMeusQuestions />} />
-            <Route path="/mycomments/:id" element={<ExibirMeusComments />} />
-            <Route path="/perfil/:id" element={<TelaPerfil />} />
+            <Route path="/" element={<><Header id={idLogado} /> <Home /></>} />
+            <Route path="/comments/:idTopic" element={<><Header id={idLogado} /> <TelaComentarios /></>} />
+            <Route path="/myquestions/:id" element={<><Header id={idLogado} /> <ExibirMeusQuestions /></>} />
+            <Route path="/mycomments/:id" element={<><Header id={idLogado} /> <ExibirMeusComments /></>} />
+            <Route path="/perfil/:id" element={<><Header id={idLogado} /> <TelaPerfil /></>} />
           </Routes>
           }
 

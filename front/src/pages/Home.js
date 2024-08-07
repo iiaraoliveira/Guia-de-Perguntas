@@ -3,6 +3,7 @@ import QuestionItem from "../components/questionItem";
 import imagemUser from '../images/icone-usuario.svg'
 import { initializeDarkMode } from '../components/darkLightMode.js';
 import Modal from 'react-modal';
+import { useNavigate } from "react-router-dom";
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
@@ -34,12 +35,14 @@ Modal.setAppElement('#root');
 
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const [topics, SetTopics] = useState([]);
     const [likesTopic, SetLikesTopic] = useState([]);
     const [newQuestionTitle, setNewQuestionTitle] = useState('');
     const [newQuestionDescription, setNewQuestionDescription] = useState('')
 
-    const idUsuario = 1;
+    const idUserLogged = 0;
 
     useEffect(() => {
         
@@ -54,7 +57,7 @@ const Home = () => {
         if(newQuestionTitle){
             const newQuestionFormat = {
                 id: topics.length + 1,
-                idUser: idUsuario,
+                idUser: idUserLogged,
                 title: newQuestionTitle,
                 description: newQuestionDescription,
                 data: 'today'
@@ -64,6 +67,12 @@ const Home = () => {
             setNewQuestionDescription('');
         }     
     }
+
+       /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+    const directLogin = () => {
+        alert('Necessário autenticação');
+        navigate(`/login`);
+    };
 
     return (
         <div>
@@ -82,7 +91,7 @@ const Home = () => {
                     onChange={(e) => setNewQuestionDescription(e.target.value)}/>
                 </div>
                 <div>
-                    <button className="button" onClick={createNewTopic}>Criar Pergunta</button>
+                    <button className="button" onClick={idUserLogged == true? createNewTopic : directLogin}>Criar Pergunta</button>
                 </div>  
                 
             </div>

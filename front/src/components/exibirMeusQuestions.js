@@ -29,8 +29,6 @@ const ExibirMeusQuestions = () => {
         return user? user.nome: 'Usuário desconhecido';
       }
 
-
-
    return(
     <div className="question-detail">
         <div className="answers">

@@ -29,7 +29,8 @@ const usuario = [
 const QuestionItem = ({ topico }) => {
   const navigate = useNavigate();
 
-  const idUserLogged = 1;
+  /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
+  const idUserLogged = 0;
 
   /* Contador da quantidade de likes */
   const [contLikesTopic, setContLikesTopic] = useState(likeTopicos);
@@ -52,14 +53,19 @@ const QuestionItem = ({ topico }) => {
 
         // verifica se o usuario ja deu like assim retorna true ou false
         const usuarioLiked = contLikesTopic.some(like => like.idUser === idUserLogged && like.idTopico === topico.id); // Supondo idUser 1 como o usuário logado
-        setClickLike(usuarioLiked);
-        
+        setClickLike(usuarioLiked);     
 
     }, [ topico.idUser, topico.id, contLikesTopic]);
 
     /* Direciona para uma pagina contendo só os comentários de cada pergunta */
   const handleQuestionClick = () => {
     navigate(`/comments/${topico.id}`);
+  };
+
+  /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+  const directLogin = () => {
+    alert('Necessário autenticação');
+    navigate(`/login`);
   };
 
     /* Somatório dos likes de uma pergunta */
@@ -93,7 +99,7 @@ const QuestionItem = ({ topico }) => {
   const [modalIsOpenEdit, setIsOpenEdit] = React.useState(false);
   const [modalIsOpenDelete, setIsOpenDelete] = React.useState(false);
 
-  // Função que abre a modal
+  // Função que abre a modal de edição
   function openModal() {
     setIsOpenEdit(true);
   }
@@ -103,7 +109,7 @@ const QuestionItem = ({ topico }) => {
     setIsOpenEdit(false);
   }
 
-  // Função que abre a modal
+  // Função que abre a modal de delete
   function openModalDelete() {
     setIsOpenDelete(true);
   }
@@ -113,9 +119,6 @@ const QuestionItem = ({ topico }) => {
     setIsOpenDelete(false)
   }
 
-  function editTopic() {
-    return true;
-  }
 
   return (
     <div className="question-item column-between" >
@@ -180,31 +183,43 @@ const QuestionItem = ({ topico }) => {
                   </div>
               ) : ''}
           </div>
-        <a onClick={atualizaLikes}>
-            { clickLike ? (<svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="30" height="30" rx="15" />
-                    <g filter="url(#filter0_d_3941_181)">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#FF6934"/>
-                    </g>
-                    <defs>
-                    <filter id="filter0_d_3941_181" x="1" y="5" width="28" height="28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dy="4"/>
-                    <feGaussianBlur stdDeviation="2"/>
-                    <feComposite in2="hardAlpha" operator="out"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.411765 0 0 0 0 0.203922 0 0 0 0.25 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3941_181"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3941_181" result="shape"/>
-                    </filter>
-                    </defs>
-                </svg>) : (<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="30" height="30" rx="15"/>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#C5D0E6"/>
-                </svg>
-            )
-          }
-        </a>
+          {
+            idUserLogged == true
+            ?
+                  <a onClick={atualizaLikes}>
+                  { clickLike ? (<svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="30" height="30" rx="15" />
+                          <g filter="url(#filter0_d_3941_181)">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#FF6934"/>
+                          </g>
+                          <defs>
+                          <filter id="filter0_d_3941_181" x="1" y="5" width="28" height="28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset dy="4"/>
+                          <feGaussianBlur stdDeviation="2"/>
+                          <feComposite in2="hardAlpha" operator="out"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.411765 0 0 0 0 0.203922 0 0 0 0.25 0"/>
+                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3941_181"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3941_181" result="shape"/>
+                          </filter>
+                          </defs>
+                      </svg>) : (<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="30" height="30" rx="15"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#C5D0E6"/>
+                      </svg>
+                    )
+                  }
+                </a>
+                :
+                <a onClick={directLogin}>
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="30" height="30" rx="15"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#C5D0E6"/>
+                          </svg>            
+                 </a>
+                }
+        
       </div>
 
       

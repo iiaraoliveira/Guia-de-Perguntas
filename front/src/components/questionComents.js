@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import imagemUser from '../images/icone-usuario.svg';
 import Modal from 'react-modal';
 
@@ -26,10 +27,12 @@ const likeRespostas = [
 ];
 
 const QuestionComents = ({ answer }) => {
+    const navigate = useNavigate();
     const [contLikesComment, setContLikesComment] = useState(likeRespostas);
     const [clickLike, setClickLike] = useState(false);
 
-    const idUserLogged = 1;
+    /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
+    const idUserLogged = 0;
 
     useEffect(() => {
         const userLiked = contLikesComment.some(like => like.idUser === idUserLogged && like.idResposta === answer.id);
@@ -53,6 +56,12 @@ const QuestionComents = ({ answer }) => {
         const user = usuario.find(u => u.id === userId);
         return user ? user.nome : 'Usuário desconhecido';
     };
+
+    /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+  const directLogin = () => {
+    alert('Necessário autenticação');
+    navigate(`/login`);
+  };
 
     // Hook que demonstra se a modal está aberta ou não
   const [modalIsOpenEdit, setIsOpenEdit] = React.useState(false);
@@ -150,33 +159,46 @@ const QuestionComents = ({ answer }) => {
                     
                     <div className='row space-between'>
                         <p className='anwers-text'>{answer.resposta}</p>
-                        <a onClick={updateLikes}>
-                            {clickLike ? (
-                                <svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="30" height="30" rx="15" fill="#2C353D" />
-                                    <g filter="url(#filter0_d_3941_181)">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#FF6934" />
-                                    </g>
-                                    <defs>
-                                        <filter id="filter0_d_3941_181" x="1" y="5" width="28" height="28" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                            <feOffset dy="4" />
-                                            <feGaussianBlur stdDeviation="2" />
-                                            <feComposite in2="hardAlpha" operator="out" />
-                                            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.411765 0 0 0 0 0.203922 0" />
-                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3941_181" />
-                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3941_181" result="shape" />
-                                        </filter>
-                                    </defs>
-                                </svg>
-                            ) : (
+                        {
+                            idUserLogged == true
+                            ?
+                            <a onClick={updateLikes}>
+                                {clickLike ? (
+                                    <svg width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="30" height="30" rx="15" fill="#2C353D" />
+                                        <g filter="url(#filter0_d_3941_181)">
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#FF6934" />
+                                        </g>
+                                        <defs>
+                                            <filter id="filter0_d_3941_181" x="1" y="5" width="28" height="28" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                <feOffset dy="4" />
+                                                <feGaussianBlur stdDeviation="2" />
+                                                <feComposite in2="hardAlpha" operator="out" />
+                                                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.411765 0 0 0 0 0.203922 0" />
+                                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3941_181" />
+                                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3941_181" result="shape" />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                    ) : (
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="30" height="30" rx="15" fill="#2C353D" />
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#C5D0E6" />
+                                        </svg>
+                                    )}
+                            </a>
+                            :
+                            <a onClick={directLogin}>
                                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="30" height="30" rx="15" fill="#2C353D" />
                                     <path fillRule="evenodd" clipRule="evenodd" d="M9.28472 6.28635C5.58205 7.41945 4.26185 11.2488 5.3915 14.5991C7.20862 19.9716 15.0014 24 15.0014 24C15.0014 24 22.8521 19.9096 24.6102 14.5991C25.7388 11.2488 24.4102 7.41945 20.7075 6.28635C18.762 5.69329 16.5332 6.07333 15.0014 7.19843C13.3822 6.04133 11.2324 5.68929 9.28472 6.28635ZM18.7574 9.27342C18.3561 9.17072 17.9476 9.41276 17.8448 9.81404C17.7421 10.2153 17.9842 10.6239 18.3855 10.7266C19.768 11.0804 20.5877 12.009 20.6825 12.9337C20.7247 13.3457 21.093 13.6455 21.5051 13.6032C21.9171 13.561 22.2169 13.1927 22.1747 12.7806C21.9982 11.0605 20.5644 9.73591 18.7574 9.27342Z" fill="#C5D0E6" />
                                 </svg>
-                            )}
-                        </a>
+                            </a>
+                            
+                        }
+                        
                     </div>
                     
                 </div>

@@ -211,6 +211,14 @@ input[type=text]{
   color: white;
 }
 
+.button-cadastro{
+  padding: 20px 20px;
+  background-color: #FF6934;
+  border-radius: 8px;
+  color: white;
+}
+
+
 /*divs row*/
 
 .row{

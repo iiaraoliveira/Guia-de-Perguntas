@@ -18,6 +18,9 @@ const Header = ({id}) => {
      const [idUSer, setIdUser] = useState('');
      const navigate = useNavigate();
 
+    /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
+    const idUserLogged = 0;
+
     useEffect(() => {
         /* Identificar o usuario logado */
         const foundUser = usuario.find(u => u.id === parseInt(id));
@@ -55,6 +58,12 @@ const Header = ({id}) => {
         setIsOpen(false);
     }
 
+       /* Direciona para uma pagina contendo só os comentários de cada pergunta */
+    const directLogin = () => {
+        alert('Necessário autenticação');
+        navigate(`/login`);
+    };
+
     return(
         <header> 
             <div className='header-content'>
@@ -69,7 +78,7 @@ const Header = ({id}) => {
                             </svg>
 
                         </Link>
-                        <p id='titulo-logo'>HiperForúm</p>
+                        <p id='titulo-logo'>AnswerHub</p>
                     </div>
                     
                 </div>
@@ -107,31 +116,44 @@ const Header = ({id}) => {
                         </Link>
                     
                     <div className='section-user'>
-                   
+                        {
+                            idUserLogged == true
+                            ?
+                            <div>
+                                <button className='dropdraw' onClick={openModal}>
+                                    
+                                    <img className='icone-usuario' src={imagemUser}></img>
+                                    <span className="username">{User}</span>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 6H6C5.17595 6 4.70557 6.94076 5.2 7.6L9.2 12.9333C9.6 13.4667 10.4 13.4667 10.8 12.9333L14.8 7.6C15.2944 6.94076 14.824 6 14 6Z" fill="#F4F6F8"/>
+                                    </svg>
+                                </button>
+                                <Modal className="modalMeuPerfil"
+                                isOpen={modalIsOpen}
+                                onRequestClose={closeModal}
+                                contentLabel='modal de deletar topico'
+                                style={{overlay: {
+                                    backgroundColor: 'rgba(0, 0 ,0, 0.8)'},}}>
+                                                <div>
+                                                    <ul>
+                                                        <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
+                                                        <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
+                                                        <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
+                                                        <Link to="/login"><li>Sair</li></Link>                                                  
+                                                    </ul>
+                                                </div>
+                            </Modal>
+                        </div>
+                        :
+                        <div>
+                            <button className='button-cadastro' onClick={directLogin}>        
+                                        <span>Se cadastre</span>                                                   
+                            </button>                           
+                        </div>
+
+                        }
                             
-                            <button className='dropdraw' onClick={openModal}>
-                                
-                                <img className='icone-usuario' src={imagemUser}></img>
-                                <span className="username">{User}</span>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 6H6C5.17595 6 4.70557 6.94076 5.2 7.6L9.2 12.9333C9.6 13.4667 10.4 13.4667 10.8 12.9333L14.8 7.6C15.2944 6.94076 14.824 6 14 6Z" fill="#F4F6F8"/>
-                                </svg>
-                            </button>
-                            <Modal className="modalMeuPerfil"
-                            isOpen={modalIsOpen}
-                            onRequestClose={closeModal}
-                            contentLabel='modal de deletar topico'
-                            style={{overlay: {
-                                backgroundColor: 'rgba(0, 0 ,0, 0.8)'},}}>
-                                            <div>
-                                                <ul>
-                                                    <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
-                                                    <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
-                                                    <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
-                                                    <Link to="/login"><li>Sair</li></Link>                                                  
-                                                </ul>
-                                             </div>
-                          </Modal>
+                            
                             
                     </div>
 
