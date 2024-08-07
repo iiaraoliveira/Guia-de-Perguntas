@@ -15,6 +15,7 @@ import com.forum.repositorys.RespostaRepository;
 import com.forum.repositorys.TopicoRepository;
 import com.forum.repositorys.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,10 +58,12 @@ public class UsuarioService {
             throw new RuntimeException("Nome já existe");
         }
 
+        String encryptedPassword = new BCryptPasswordEncoder().encode(dto.senha());
+
         Usuario usuario = new Usuario();
         usuario.setNome(dto.nome());
         usuario.setLogin(dto.login());
-        usuario.setSenha(dto.senha());
+        usuario.setSenha(encryptedPassword);
         usuario.setRole(Role.USUARIO);
 
         usuarioRepository.save(usuario);
