@@ -24,7 +24,7 @@ public class TopicoController {
     @Autowired
     private TopicoService service;
 
-    @PostMapping("/usuario/topico/usuario_id")
+    @PostMapping("/usuario/topico/{usuario_id}")
     public ResponseEntity<Void> criarTopico(@PathVariable Long usuario_id,
                                             @RequestBody List<TopicoDTO> dto){
 
@@ -33,7 +33,7 @@ public class TopicoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/usuario/topico/usuario_id/topico_id")
+    @PutMapping("/usuario/topico/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> atualizarTopico(@PathVariable Long usuario_id,
                                                 @PathVariable Long topico_id,
                                                 @RequestBody TopicoDTO dto){
@@ -43,7 +43,7 @@ public class TopicoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/usuario/topico/usuario_id/topico_id")
+    @DeleteMapping("/usuario/topico/{usuario_id}/{topico_id}")
     public ResponseEntity<Void> apagarTopico(@PathVariable Long usuario_id,
                                              @PathVariable Long topico_id){
 
