@@ -86,3 +86,5 @@ b
 2src/test/java/com/forum/ForumApplicationTests.java,f\7\f7b3954a81e6a8b53ca64b6fa7bfddbecb2e1334
 Y
 )src/main/resources/application.properties,0\6\06f65155ec73600b9fc5c4dc2883d4bb84d8e284
+<
+compose.yaml,2\7\2701071a1490f4576d914b0b84bc3185e0aa2854
