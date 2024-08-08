@@ -9,7 +9,7 @@ const TelaCadastro = ({onLogin}) => {
     const navigate = useNavigate();
 
     const handleClickCadastrar = () => {
-       
+        navigate(`/`);
     };
 
     return (

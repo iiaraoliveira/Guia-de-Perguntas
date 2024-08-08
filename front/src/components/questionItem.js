@@ -5,15 +5,66 @@ import Modal from 'react-modal';
 
 
 const likeTopicos = [
-    {id: 1, idUser: 1, idTopico: 1},
-    {id: 2, idUser: 2, idTopico: 1},
-    {id: 3, idUser: 1, idTopico: 2},
+  {id: 1, idUser: 1, idTopico: 1},
+  {id: 2, idUser: 2, idTopico: 1},
+  {id: 3, idUser: 3, idTopico: 1},
+  {id: 4, idUser: 4, idTopico: 1},
+  {id: 5, idUser: 5, idTopico: 1},
+  {id: 6, idUser: 6, idTopico: 1},
+  {id: 7, idUser: 7, idTopico: 1},
+  {id: 8, idUser: 8, idTopico: 1},
+  {id: 9, idUser: 9, idTopico: 1},
+  {id: 10, idUser: 10, idTopico: 1},
+  {id: 11, idUser: 11, idTopico: 1},
+  {id: 12, idUser: 12, idTopico: 1},
+  {id: 13, idUser: 13, idTopico: 1},
+  {id: 14, idUser: 14, idTopico: 1},
+  {id: 15, idUser: 15, idTopico: 1},
+  {id: 16, idUser: 16, idTopico: 1},
+  {id: 17, idUser: 17, idTopico: 1},
+  {id: 18, idUser: 18, idTopico: 1},
+  {id: 19, idUser: 19, idTopico: 1},
+  {id: 20, idUser: 20, idTopico: 1},
+  {id: 21, idUser: 21, idTopico: 1},
+  {id: 22, idUser: 22, idTopico: 1},
+  {id: 23, idUser: 23, idTopico: 1},
+  {id: 24, idUser: 24, idTopico: 1},
+  {id: 25, idUser: 25, idTopico: 1},
+  {id: 26, idUser: 26, idTopico: 1},
+  {id: 27, idUser: 27, idTopico: 1},
+  {id: 28, idUser: 28, idTopico: 1},
+  {id: 29, idUser: 29, idTopico: 1},
+  {id: 30, idUser: 30, idTopico: 1},
+  {id: 31, idUser: 31, idTopico: 2},
+  {id: 32, idUser: 22, idTopico: 2},
+  {id: 33, idUser: 23, idTopico: 3},
+  {id: 34, idUser: 24, idTopico: 4},
+  {id: 35, idUser: 25, idTopico: 4},
+  {id: 36, idUser: 26, idTopico: 4},
+  {id: 37, idUser: 27, idTopico: 5},
+  {id: 38, idUser: 28, idTopico: 5},
+  {id: 39, idUser: 29, idTopico: 5},
+  {id: 40, idUser: 30, idTopico: 5},
+  {id: 41, idUser: 31, idTopico: 5},
 ]
 
+
 const respostas = [
-    {id:1, idUser: 1, idTopico: 1, resposta: 'acho que não ein', data: 'today'},
-    {id:2, idUser: 1, idTopico: 1, resposta: 'calma calabreso', data: 'today'},
-    {id:3, idUser: 2, idTopico: 2, resposta: 'Incrivel', data: 'today'}
+  {id:1, idUser: 2, idTopico: 1, resposta: 'Uma das primeiras coisas que você pode fazer é adicionar mais RAM, se o seu sistema tiver menos de 8 GB. Isso pode ajudar a melhorar o desempenho em jogos e multitarefa.', data: '07/08/2024'},
+  {id:2, idUser: 5, idTopico: 1, resposta: 'Outra solução eficaz e barata é investir num SSD, se você ainda não tiver um. Isso pode acelerar o carregamento dos jogos e reduzir os tempos de espera. ', data: '07/08/2024'},
+  {id:3, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:4, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:5, idUser: 1, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:6, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:7, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:8, idUser: 5, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:9, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:10, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:11, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:12, idUser: 5, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:13, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:14, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+  {id:15, idUser: 3, idTopico: 2, resposta: 'Eu também tive problemas após a última atualização. Uma solução que funcionou para mim foi fazer uma restauração do sistema para um ponto antes da atualização. Depois, desativei as atualizações automáticas temporariamente até que a Microsoft lance uma correção.', data: '07/08/2024'},
 ]
 
 const likeRespostas = [
@@ -21,8 +72,12 @@ const likeRespostas = [
 ]
 
 const usuario = [
-    {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
-    {id: 2, nome: 'Iara Costa', email: 'iara@gmail.com', senha: '1234'},
+  {id: 1, nome: 'João Pedro', email: 'joaopedro@gmail.com', senha: '1234'},
+  {id: 2, nome: 'Iara Costa', email: 'iaraC@gmail.com', senha: '1234'},
+  {id: 3, nome: 'Vitoria Nobre', email: 'vitoria@gmail.com', senha: '1234'},
+  {id: 4, nome: 'Gabriel Santiago', email: 'gabriel@gmail.com', senha: '1234'},
+  {id: 5, nome: 'Raquel Duarte', email: 'raquel@gmail.com', senha: '1234'},
+  {id: 6, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
 ]
 
 
@@ -30,7 +85,7 @@ const QuestionItem = ({ topico }) => {
   const navigate = useNavigate();
 
   /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
-  const idUserLogged = 0;
+  const idUserLogged = 1;
 
   /* Contador da quantidade de likes */
   const [contLikesTopic, setContLikesTopic] = useState(likeTopicos);
@@ -64,7 +119,7 @@ const QuestionItem = ({ topico }) => {
 
   /* Direciona para uma pagina contendo só os comentários de cada pergunta */
   const directLogin = () => {
-    alert('Necessário autenticação');
+    alert('Entre em sua conta ou se cadastre!');
     navigate(`/login`);
   };
 
@@ -127,9 +182,9 @@ const QuestionItem = ({ topico }) => {
 
           <h3 className='titulo-question click' onClick={handleQuestionClick}>{topico.title}</h3>
 
-          <div className='column'>
+          <div className='row align-left'>
               {topico.idUser === idUserLogged ? (
-                  <div className='row'>
+                  <div className='row align-left'>
 
                       <svg className="svg-light-dark" width="12" height="14" viewBox="0 0 12 14" xmlns="http://www.w3.org/2000/svg">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8.64458 1.16667H11.5261V2.33333H0V1.16667H2.88153L3.84633 0H7.67981L8.64458 1.16667ZM2.68944 14C1.8441 14 1.15261 13.3017 1.15261 12.4479V3.5H10.3735V12.4479C10.3735 13.3017 9.682 14 8.8367 14H2.68944Z" />
@@ -182,7 +237,7 @@ const QuestionItem = ({ topico }) => {
 
                   </div>
               ) : ''}
-          </div>
+          
           {
             idUserLogged == true
             ?
@@ -219,7 +274,7 @@ const QuestionItem = ({ topico }) => {
                           </svg>            
                  </a>
                 }
-        
+        </div>
       </div>
 
       

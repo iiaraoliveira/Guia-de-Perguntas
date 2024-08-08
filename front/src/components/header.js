@@ -1,12 +1,80 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import imagemUser from '../images/icone-usuario.svg'
+import imagemUser from '../images/icone-usuario.svg';
+import medalhaBronze from '../images/bronze-medal.png';
+import medalhaPrata from '../images/silver-medal.png';
+import medalhaOuro from '../images/gold-medal.png';
+import medalhaDiamante from '../images/diammedal.png';
 import { initializeDarkMode } from './darkLightMode.js';
 import Modal from 'react-modal';
 
 const usuario = [
     {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
-    {id: 2, nome: 'Iara Costa', email: 'iara@gmail.com', senha: '1234'},
+    {id: 2, nome: 'Iara Costa', email: 'iaraC@gmail.com', senha: '1234'},
+    {id: 3, nome: 'Vitoria Nobre', email: 'vitoria@gmail.com', senha: '1234'},
+    {id: 4, nome: 'Gabriel Santiago', email: 'gabriel@gmail.com', senha: '1234'},
+    {id: 5, nome: 'Raquel Duarte', email: 'raquel@gmail.com', senha: '1234'},
+    {id: 6, nome: 'João Pedro', email: 'joao@gmail.com', senha: '1234'},
+]
+
+const topicos = [
+    {id: 1, idUser: 1, title: 'Como posso melhorar o desempenho do meu PC para jogos sem gastar muito dinheiro?', description:"O meu PC já tem alguns anos e noto que os jogos mais recentes estão a ter dificuldades de correr bem. Quais são as atualizações mais económicas e eficazes que posso fazer para melhorar o desempenho em jogos? Será que uma atualização de RAM ou uma nova placa gráfica faria a diferença?", data: '06/08/2024'},
+    {id: 2, idUser:2, title: 'Alguém mais teve problemas com a última atualização do Windows 11? Como resolvê-los?', description:"Depois de instalar a última atualização do Windows 11, o meu PC começou a ficar lento e algumas aplicações estão a falhar. Já tentei algumas soluções básicas, mas nada parece funcionar. Alguém enfrentou problemas semelhantes e conseguiu resolvê-los?", data: '05/08/2024'},
+    {id: 3, idUser: 3, title: 'Existe uma maneira eficiente de migrar todos os meus dados de um iPhone para um Android?', description:"Vou trocar o meu iPhone por um novo dispositivo Android, mas estou preocupado com a migração dos meus dados. Qual é o método mais eficiente para transferir contatos, fotos, mensagens e outras informações importantes de um iPhone para um Android?", data: '06/08/2024'},
+    {id: 4, idUser:4, title: 'Quais são os principais benefícios de usar containers como Docker no desenvolvimento de software?', description:"Tenho ouvido falar muito sobre o uso de containers como Docker, mas não estou certo dos benefícios práticos em comparação com outras soluções. Como os containers podem ajudar no desenvolvimento e na gestão de aplicações? Vale a pena aprender a usar Docker?", data: '06/08/2024'},
+    {id: 5, idUser:5, title: 'Como posso otimizar o SEO do meu site para melhor performance nos motores de busca?', description:"Tenho um site há algum tempo, mas não estou a conseguir atingir o tráfego que desejo. Quais são as melhores práticas de SEO atualmente para melhorar o ranking do meu site nos motores de busca? Existem ferramentas recomendadas para ajudar nesse processo?", data: '06/08/2024'},
+]
+
+const likeTopicos = [
+    {id: 1, idUser: 1, idTopico: 1},
+    {id: 2, idUser: 2, idTopico: 1},
+    {id: 3, idUser: 3, idTopico: 1},
+    {id: 4, idUser: 4, idTopico: 1},
+    {id: 5, idUser: 5, idTopico: 1},
+    {id: 6, idUser: 6, idTopico: 1},
+    {id: 7, idUser: 7, idTopico: 1},
+    {id: 8, idUser: 8, idTopico: 1},
+    {id: 9, idUser: 9, idTopico: 1},
+    {id: 10, idUser: 10, idTopico: 1},
+    {id: 11, idUser: 11, idTopico: 1},
+    {id: 12, idUser: 12, idTopico: 1},
+    {id: 13, idUser: 13, idTopico: 1},
+    {id: 14, idUser: 14, idTopico: 1},
+    {id: 15, idUser: 15, idTopico: 1},
+    {id: 16, idUser: 16, idTopico: 1},
+    {id: 17, idUser: 17, idTopico: 1},
+    {id: 18, idUser: 18, idTopico: 1},
+    {id: 19, idUser: 19, idTopico: 1},
+    {id: 20, idUser: 20, idTopico: 1},
+    {id: 21, idUser: 21, idTopico: 1},
+    {id: 22, idUser: 22, idTopico: 1},
+    {id: 23, idUser: 23, idTopico: 1},
+    {id: 24, idUser: 24, idTopico: 1},
+    {id: 25, idUser: 25, idTopico: 1},
+    {id: 26, idUser: 26, idTopico: 1},
+    {id: 27, idUser: 27, idTopico: 1},
+    {id: 28, idUser: 28, idTopico: 1},
+    {id: 29, idUser: 29, idTopico: 1},
+    {id: 30, idUser: 30, idTopico: 1},
+    {id: 31, idUser: 31, idTopico: 1},
+]
+
+const respostas = [
+    {id:1, idUser: 2, idTopico: 1, resposta: 'Uma das primeiras coisas que você pode fazer é adicionar mais RAM, se o seu sistema tiver menos de 8 GB. Isso pode ajudar a melhorar o desempenho em jogos e multitarefa.', data: '07/08/2024'},
+    {id:2, idUser: 5, idTopico: 1, resposta: 'Outra solução eficaz e barata é investir num SSD, se você ainda não tiver um. Isso pode acelerar o carregamento dos jogos e reduzir os tempos de espera. ', data: '07/08/2024'},
+    {id:3, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:4, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:5, idUser: 1, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:6, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:7, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:8, idUser: 5, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:9, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:10, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:11, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:12, idUser: 5, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:13, idUser: 2, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:14, idUser: 4, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
+    {id:15, idUser: 3, idTopico: 1, resposta: 'Ajustar as configurações gráficas dos jogos também pode fazer uma grande diferença.', data: '07/08/2024'},
 ]
 
 // Código necessário para os recursos de acessibilidade
@@ -16,10 +84,13 @@ const Header = ({id}) => {
 
      const [User, setUser] = useState('');
      const [idUSer, setIdUser] = useState('');
+     const [totalLikes, setTotalLikes] = useState(0);
+     const [totalComentarios, setTotalComentarios] = useState(0);
+     const [medalha, setMedalha] = useState(null);
      const navigate = useNavigate();
 
     /* 0 se o usuario não tiver autenticado ou o id caso esteja autenticado*/
-    const idUserLogged = 0;
+    const idUserLogged = 1;
 
     useEffect(() => {
         /* Identificar o usuario logado */
@@ -29,6 +100,32 @@ const Header = ({id}) => {
             setIdUser(foundUser.id);
         }
 
+        const topicosUser = topicos.find(t => t.idUser === parseInt(id));
+
+        // Obter o número de likes para o tópico atual
+        const likes = likeTopicos.filter(like => like.idTopico === topicosUser.id).length;
+        setTotalLikes(likes);
+
+        // Obter o número de comentários para o tópico atual
+        const comentarios = respostas.filter(resposta => resposta.idTopico === topicosUser.id).length;
+        setTotalComentarios(comentarios);
+
+        // Calcular a pontuação total
+        const totalPontos = likes + comentarios;
+
+        // Definir qual medalha exibir com base na pontuação total
+        
+        if (likes >= 126 && comentarios >= 54) {
+            setMedalha(medalhaDiamante);
+        } else if (likes >= 90 && comentarios >= 36) {
+            setMedalha(medalhaOuro);
+        } else if (likes >= 45 && comentarios >= 18){
+            setMedalha(medalhaPrata);
+        } else if (likes >= 27 && comentarios >= 9){
+            setMedalha(medalhaBronze)
+        } else{
+            setMedalha(null);
+        }
         // Chama a função de inicialização do modo escuro/claro
         initializeDarkMode();
 
@@ -63,6 +160,7 @@ const Header = ({id}) => {
         alert('Necessário autenticação');
         navigate(`/login`);
     };
+
 
     return(
         <header> 
@@ -117,7 +215,7 @@ const Header = ({id}) => {
                     
                     <div className='section-user'>
                         {
-                            idUserLogged == true
+                            idUserLogged > 0
                             ?
                             <div>
                                 <button className='dropdraw' onClick={openModal}>
@@ -136,10 +234,21 @@ const Header = ({id}) => {
                                     backgroundColor: 'rgba(0, 0 ,0, 0.8)'},}}>
                                                 <div>
                                                     <ul>
-                                                        <Link to="/perfil/${idUser}"><li>Meu perfil</li></Link>
+                                                        <span> {medalha ? (
+                                                            <div className='align-center'>
+                                                                <img src={medalha} alt="Medalha" style={{ width: '50px', height: '50px' }} />
+                                                                <p className='likes'>{totalLikes}likes e {totalComentarios} comentários</p>
+                                                            </div>
+                                                            
+                                                            ) : (
+                                                                <p>Sem medalha</p>
+                                                            )}
+                                                            
+                                                        </span> 
+                                                        <Link to={`/perfil/${id}`}><li>Meu perfil</li></Link>
                                                         <li onClick={handleClickExibirMeusTopicos}>Visualizar meus tópicos</li>
                                                         <li onClick={handleClickExibirMeusComments}>Visualizar meus comentários</li>
-                                                        <Link to="/login"><li>Sair</li></Link>                                                  
+                                                        <Link to={`/login`}><li>Sair</li></Link>                                                 
                                                     </ul>
                                                 </div>
                             </Modal>

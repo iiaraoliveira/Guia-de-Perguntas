@@ -14,8 +14,12 @@ import TelaPerfil from './pages/TelaPerfil';
 import './components/darkLightMode';
 
 const usuario = [
-  {id: 1, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
-  {id: 2, nome: 'Iara Costa', email: 'iara@gmail.com', senha: '1234'},
+  {id: 1, nome: 'João PEdro', email: 'joaopedro@gmail.com', senha: '1234'},
+  {id: 2, nome: 'Iara Costa', email: 'iaraC@gmail.com', senha: '1234'},
+  {id: 3, nome: 'Vitoria Nobre', email: 'vitoria@gmail.com', senha: '1234'},
+  {id: 4, nome: 'Gabriel Santiago', email: 'gabriel@gmail.com', senha: '1234'},
+  {id: 5, nome: 'Raquel Duarte', email: 'raquel@gmail.com', senha: '1234'},
+  {id: 6, nome: 'Iara Amancio', email: 'iara@gmail.com', senha: '1234'},
 ]
 
 function App() {
@@ -27,9 +31,6 @@ function App() {
   const handleLogin = () => {
     setIsAutenticado(true);
   }
-
-  /* Para não exibir o header nas telas de cadastro e login depois de logado  */
- // const shouldShowHeader = isAutenticado && location.pathname !== '/login' && location.pathname !== '/cadastro';
 
   return (
     <Router>

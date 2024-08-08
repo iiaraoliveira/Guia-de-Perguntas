@@ -6,13 +6,18 @@
 
 .question-item {
     width: 785px;
-    height: 136px;
+    height: 150px;
     background-color: #262D34;
     margin: 10px auto;
     padding: 20px;
     
     color: #F7F7F7;
     border-radius: 16px;
+}
+
+.subtitulo-question{
+    font-weight: 100;
+    text-align: justify;
 }
 
 .dark .question-item,
@@ -24,8 +29,8 @@
 }
 
 .question-item-detail {
-    width: 785px;
-    height: 200px;
+    width: 730px;
+    height: 250px;
     background-color: #262D34;
     margin: 10px auto;
     padding: 20px;   
